@@ -1,3 +1,4 @@
+import io.qameta.allure.junit4.DisplayName;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
@@ -26,7 +27,6 @@ public class OrderAcceptTest {
     @BeforeClass
     public static void globalSetUp() {
         RestAssured.filters(
-//                new RequestLoggingFilter(), new ResponseLoggingFilter(),
                 new AllureRestAssured()
         );
     }
@@ -45,6 +45,7 @@ public class OrderAcceptTest {
     }
 
     @Test
+    @DisplayName("Заказ может быть принят с валидными данными")
     public void orderCanBeAcceptedWithValidData() {
         order = new Order();
         courier = CourierGenerator.getRandom();
@@ -59,6 +60,7 @@ public class OrderAcceptTest {
     }
 
     @Test
+    @DisplayName("Заказ не может быть принят без Id заказа")
     public void orderCanNotBeAcceptedWithoutOrderId() {
         order = new Order();
         courier = CourierGenerator.getRandom();
@@ -72,6 +74,7 @@ public class OrderAcceptTest {
     }
 
     @Test
+    @DisplayName("Заказ не может быть принят без Id курьера")
     public void orderCanNotBeAcceptedWithoutCourierId() {
         order = new Order();
         courier = CourierGenerator.getRandom();
@@ -84,6 +87,7 @@ public class OrderAcceptTest {
     }
 
     @Test
+    @DisplayName("Заказ не может быть принят с невалидным Id заказа")
     public void orderCanNotBeAcceptedWithInvalidOrderId() {
         order = new Order();
         courier = CourierGenerator.getRandom();
@@ -98,6 +102,7 @@ public class OrderAcceptTest {
     }
 
     @Test
+    @DisplayName("Заказ не может быть принят с невалидным Id курьера")
     public void orderCanNotBeAcceptedWithInvalidCourierId() {
         order = new Order();
         courier = CourierGenerator.getRandom();

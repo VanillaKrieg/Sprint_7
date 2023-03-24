@@ -9,7 +9,7 @@ import static io.restassured.RestAssured.given;
 
 public class CourierClient extends ScooterRestClient {
 
-    private static final String COURIER_URI = BASE_URI + "courier/";
+    private static final String COURIER_URI = "courier/";
 
     @Step("Create {courier}")
     public ValidatableResponse create(Courier courier) {

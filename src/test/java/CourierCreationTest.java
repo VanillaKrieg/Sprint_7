@@ -1,3 +1,4 @@
+import io.qameta.allure.junit4.DisplayName;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
@@ -22,7 +23,6 @@ public class CourierCreationTest {
     @BeforeClass
     public static void globalSetUp() {
         RestAssured.filters(
-//                new RequestLoggingFilter(), new ResponseLoggingFilter(),
                 new AllureRestAssured()
         );
     }
@@ -41,6 +41,7 @@ public class CourierCreationTest {
     }
 
     @Test
+    @DisplayName("Курьер может быть создан с валидными данными")
     public void courierCanBeCreatedWithValidData() {
         courier = CourierGenerator.getRandom();
 
@@ -51,6 +52,7 @@ public class CourierCreationTest {
     }
 
     @Test
+    @DisplayName("Курьер не может быть создан с тем же логином")
     public void courierCanNotBeCreatedWithSameLogin() {
         courier = CourierGenerator.getRandom();
 
@@ -62,6 +64,7 @@ public class CourierCreationTest {
     }
 
     @Test
+    @DisplayName("Курьер не может быть создан без логина")
     public void courierCanNotBeCreatedWithoutLogin() {
         courier = new Courier("", "password");
 
@@ -72,6 +75,7 @@ public class CourierCreationTest {
     }
 
     @Test
+    @DisplayName("Курьер не может быть создан без пароля")
     public void courierCanNotBeCreatedWithoutPassword() {
         courier = new Courier("login", "");
 

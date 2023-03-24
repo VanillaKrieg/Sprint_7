@@ -1,3 +1,4 @@
+import io.qameta.allure.junit4.DisplayName;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
@@ -23,7 +24,6 @@ public class CourierLoginTest {
     @BeforeClass
     public static void globalSetUp() {
         RestAssured.filters(
-//                new RequestLoggingFilter(), new ResponseLoggingFilter(),
                 new AllureRestAssured()
         );
     }
@@ -42,6 +42,7 @@ public class CourierLoginTest {
     }
 
     @Test
+    @DisplayName("Курьер может залогиниться с валидными данными")
     public void courierCanLoginWithValidData() {
         courier = CourierGenerator.getRandom();
         courierClient.create(courier);
@@ -53,6 +54,7 @@ public class CourierLoginTest {
     }
 
     @Test
+    @DisplayName("Курьер не может залогиниться с невалидным логином")
     public void courierCanNotLoginWithInvalidLogin() {
         courier = CourierGenerator.getRandom();
 
@@ -63,6 +65,7 @@ public class CourierLoginTest {
     }
 
     @Test
+    @DisplayName("Курьер не может залогиниться с невалидным паролем")
     public void courierCanNotLoginWithInvalidPassword() {
         courier = CourierGenerator.getRandom();
         courierClient.create(courier);
@@ -78,6 +81,7 @@ public class CourierLoginTest {
     }
 
     @Test
+    @DisplayName("Курьер не может залогиниться без логина")
     public void courierCanNotLoginWithoutLogin() {
         courier = new Courier("", "password");
 
@@ -88,6 +92,7 @@ public class CourierLoginTest {
     }
 
     @Test
+    @DisplayName("Курьер не может залогиниться без пароля")
     public void courierCanNotLoginWithoutPassword() {
         courier = new Courier("login", "");
 

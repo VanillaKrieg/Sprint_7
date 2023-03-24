@@ -1,3 +1,4 @@
+import io.qameta.allure.junit4.DisplayName;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import org.junit.Before;
@@ -18,7 +19,6 @@ public class OrdersListTest {
     @BeforeClass
     public static void globalSetUp() {
         RestAssured.filters(
-//                new RequestLoggingFilter(), new ResponseLoggingFilter(),
                 new AllureRestAssured()
         );
     }
@@ -30,6 +30,7 @@ public class OrdersListTest {
 
 
     @Test
+    @DisplayName("Список заказов может быть получен")
     public void ordersListCanBeGotten() {
         orderClient.getList()
                 .assertThat()

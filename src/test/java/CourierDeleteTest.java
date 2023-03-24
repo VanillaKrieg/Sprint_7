@@ -1,3 +1,4 @@
+import io.qameta.allure.junit4.DisplayName;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
@@ -22,7 +23,6 @@ public class CourierDeleteTest {
     @BeforeClass
     public static void globalSetUp() {
         RestAssured.filters(
-//                new RequestLoggingFilter(), new ResponseLoggingFilter(),
                 new AllureRestAssured()
         );
     }
@@ -32,14 +32,8 @@ public class CourierDeleteTest {
         courierClient = new CourierClient();
     }
 
-    @After
-    public void clearData() throws NullPointerException {
-        try {
-            courierClient.delete(courier);
-        } catch (NullPointerException ignored) {}
-    }
-
     @Test
+    @DisplayName("Курьер может быть удален с валидными данными")
     public void courierCanBeDeletedWithValidData() {
         courier = CourierGenerator.getRandom();
         courierClient.create(courier);
@@ -51,6 +45,7 @@ public class CourierDeleteTest {
     }
 
     @Test
+    @DisplayName("Курьер не может быть удален без Id")
     public void courierCanNotBeDeletedWithoutId() {
         courier = CourierGenerator.getRandom();
 
@@ -61,6 +56,7 @@ public class CourierDeleteTest {
     }
 
     @Test
+    @DisplayName("Курьер не может быть удален c невалидным Id")
     public void courierCanNotBeDeletedWithInvalidId() {
         courier = CourierGenerator.getRandom();
         courier.setId(0);

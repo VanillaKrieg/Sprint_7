@@ -1,3 +1,4 @@
+import io.qameta.allure.junit4.DisplayName;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
@@ -21,7 +22,6 @@ public class OrderGetTest {
     @BeforeClass
     public static void globalSetUp() {
         RestAssured.filters(
-//                new RequestLoggingFilter(), new ResponseLoggingFilter(),
                 new AllureRestAssured()
         );
     }
@@ -32,7 +32,8 @@ public class OrderGetTest {
     }
 
     @Test
-    public void orderCanBeGottenWithValidData() {
+    @DisplayName("Заказ может быть найден с валидными данными")
+    public void orderCanBeFoundWithValidData() {
         order = new Order();
         order.setTrackId(orderClient.create(order).extract().path("track"));
 
@@ -43,7 +44,8 @@ public class OrderGetTest {
     }
 
     @Test
-    public void orderCanNotBeGottenWithoutTrackId() {
+    @DisplayName("Заказ не может быть найден без трек-Id")
+    public void orderCanNotBeFoundWithoutTrackId() {
         order = new Order();
 
         orderClient.get(order)
@@ -53,7 +55,8 @@ public class OrderGetTest {
     }
 
     @Test
-    public void orderCanNotBeGottenWithInvalidTrackId() {
+    @DisplayName("Заказ не может быть найден с невалидным трек-Id")
+    public void orderCanNotBeFoundWithInvalidTrackId() {
         order = new Order();
         order.setTrackId(0);
 

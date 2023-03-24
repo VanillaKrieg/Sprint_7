@@ -1,3 +1,4 @@
+import io.qameta.allure.junit4.DisplayName;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
@@ -41,7 +42,6 @@ public class OrderCreationTest {
     @BeforeClass
     public static void globalSetUp() {
         RestAssured.filters(
-//                new RequestLoggingFilter(), new ResponseLoggingFilter(),
                 new AllureRestAssured()
         );
     }
@@ -53,6 +53,7 @@ public class OrderCreationTest {
 
 
     @Test
+    @DisplayName("Заказ может быть создан с валидными данными")
     public void orderCanBeCreatedWithValidData() {
         orderClient.create(order)
                 .assertThat()

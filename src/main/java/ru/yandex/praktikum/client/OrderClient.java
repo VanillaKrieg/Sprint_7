@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.given;
 
 public class OrderClient extends ScooterRestClient {
 
-    private static final String ORDERS_URI = BASE_URI + "orders/";
+    private static final String ORDERS_URI = "orders/";
     private static final String ACCEPT_ORDER_URI = ORDERS_URI + "accept/";
     private static final String GET_ORDER_URI = ORDERS_URI + "track";
 
