@@ -1,0 +1,1 @@
+# Educational project. API tests сoverage of the scooter rental service
